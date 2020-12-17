@@ -5,16 +5,16 @@
 @section('content')
     <h1>Listagem</h1>
 
-    <a href="">Adicionar nova tarefa</a>
+    <a href="{{route('tarefas.add')}}">Adicionar nova tarefa</a>
 
     @if(count($list) > 0)
         <ul>
             @foreach($list as $item)
                 <li>
-                    <a href="">[ @if($item->resolvido === 1) DESMARCAR @else MARCAR @endif]</a>
+                    <a href="{{route('tarefas.done', ['id'=>$item->id])}}">[ @if($item->resolvido === 1) DESMARCAR @else MARCAR @endif]</a>
                     {{$item->titulo}}
-                    <a href="">[ EDITAR ]</a>
-                    <a href="">[ EXCLUIR ]</a>
+                    <a href="{{route('tarefas.edit', ['id'=>$item->id])}}">[ EDITAR ]</a>
+                    <a href="{{route('tarefas.del', ['id'=>$item->id])}}">[ EXCLUIR ]</a>
                 </li>
             @endforeach
         </ul>

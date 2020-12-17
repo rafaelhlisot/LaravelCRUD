@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class TarefasController extends Controller
 {
@@ -19,8 +20,16 @@ class TarefasController extends Controller
         return view('tarefas.add');
     }
 
-    public function addAction() {
+    public function addAction(Request $request) {
+        if ($request->filled('title')) {
+            $title = $request->input('title');
 
+            DB::insert('INSERT INTO tarefas (titulo) VALUES (:titulo)', ['titulo' => $title]);
+
+            return redirect()->route('tarefas.list');
+        } else {
+            return redirect()->route('tarefas.add')->with('warning', 'Preencha o titulo');
+        }
     }
 
     public function edit() {
