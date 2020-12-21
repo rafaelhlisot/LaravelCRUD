@@ -14,7 +14,7 @@
                     <a href="{{route('tarefas.done', ['id'=>$item->id])}}">[ @if($item->resolvido === 1) DESMARCAR @else MARCAR @endif]</a>
                     {{$item->titulo}}
                     <a href="{{route('tarefas.edit', ['id'=>$item->id])}}">[ EDITAR ]</a>
-                    <a href="{{route('tarefas.del', ['id'=>$item->id])}}">[ EXCLUIR ]</a>
+                    <a href="{{route('tarefas.del', ['id'=>$item->id])}}" onclick="return confirm('Deseja realmemte excluir este registro?')">[ EXCLUIR ]</a>
                 </li>
             @endforeach
         </ul>
